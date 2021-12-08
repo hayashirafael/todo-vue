@@ -23,8 +23,8 @@ export default {
 <style>
    .task {
       box-sizing: border-box;
-      width: 350px;
-      height: 150px;
+      width: 300px;
+      height: 120px;
       padding: 10px;
       border-radius: 9px;
       font-size: 2rem;
