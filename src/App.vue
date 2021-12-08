@@ -2,7 +2,7 @@
   <div id="app">
     <h1>Tarefas</h1>
     <NewTask @taskAdded="addTask($event)"/>
-    <TaskGrid :tasks="tasks"/>
+    <TaskGrid :tasks="tasks" @taskDeleted="deleteTask"/>
   </div>
 </template>
 
@@ -18,8 +18,7 @@ export default {
   data() {
     return {
       tasks: [
-        {name: 'Lavar louça', pending: false},
-        {name: 'Comprar roupa', pending: true},
+        
       ]
     }
   },
@@ -35,6 +34,10 @@ export default {
       } else {
         alert('Essa task já existe!')
       }
+    },
+    deleteTask(task) {
+      const i = this.tasks.indexOf(task)
+      if (i >= 0) this.tasks.splice(i, 1)
     }
   }
 }
