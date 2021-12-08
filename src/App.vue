@@ -2,7 +2,9 @@
   <div id="app">
     <h1>Tarefas</h1>
     <NewTask @taskAdded="addTask($event)"/>
-    <TaskGrid :tasks="tasks" @taskDeleted="deleteTask"/>
+    <TaskGrid :tasks="tasks" 
+    @taskDeleted="deleteTask" 
+    @taskStateChanged="toggleTaskState"/>
   </div>
 </template>
 
@@ -35,10 +37,16 @@ export default {
         alert('Essa task já existe!')
       }
     },
+
     deleteTask(task) {
       const i = this.tasks.indexOf(task)
       if (i >= 0) this.tasks.splice(i, 1)
+    },
+
+    toggleTaskState(i) {
+      this.tasks[i].pending = !this.tasks[i].pending
     }
+
   }
 }
 </script>
