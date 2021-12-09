@@ -55,6 +55,18 @@ export default {
       this.tasks[i].pending = !this.tasks[i].pending
     }
 
+  },
+  watch: {
+    tasks: {
+      deep: true, // irá observar com qualquer mudança
+      handler() {
+        localStorage.setItem('tasks', JSON.stringify(this.tasks))
+      }
+    }
+  },
+  created() {
+    const json = localStorage.getItem('tasks')
+    this.tasks = JSON.parse(json) || []
   }
 }
 </script>
